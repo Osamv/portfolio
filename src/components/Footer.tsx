@@ -11,17 +11,12 @@ const Footer: React.FC = () => {
     {
       name: 'GitHub',
       icon: CodeBracketIcon,
-      url: 'https://github.com/yourusername',
+      url: 'https://github.com/Osamv',
     },
     {
       name: 'LinkedIn',
       icon: LinkIcon,
-      url: 'https://linkedin.com/in/yourusername',
-    },
-    {
-      name: 'Twitter',
-      icon: ChatBubbleLeftIcon,
-      url: 'https://twitter.com/yourusername',
+      url: 'https://linkedin.com/in/osama1421',
     },
   ];
 
@@ -40,7 +35,7 @@ const Footer: React.FC = () => {
           >
             <h3 className="text-xl font-semibold mb-4">Osama Alsahafi</h3>
             <p className="text-gray-400">
-              Full Stack Developer & Designer and UI/UX Designer
+              Developer & Designer and UI/UX Designer
             </p>
           </motion.div>
 

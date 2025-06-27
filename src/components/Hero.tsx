@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-8"
           >
-            Full Stack Developer & Designer
+            Developer &  UI/UX Designer
           </motion.h2>
           
           <motion.p
