@@ -13,12 +13,22 @@ const Navbar: React.FC = () => {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
+            {
+            
+            <a href="/" className="flex items-center space-x-2">
+  <img src="/logo512.png" alt="Logo" className="h-14 w-auto" />
+  <span className="text-sm font-bold text-white">SQR</span>
+</a>
+
+            /*}
             <a href="/" className="text-xl font-bold text-gray-900 dark:text-white">
               OsamaFlow
             </a>
           </div>
           
           {/* Desktop menu */}
+          </div>
+          
           <div className="hidden md:flex md:items-center md:space-x-8">
             <a href="#home" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
               Home
@@ -26,8 +36,11 @@ const Navbar: React.FC = () => {
             <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
               About
             </a>
+            <a href="#experience" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
+              Experience
+            </a>
             <a href="#projects" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
-              Projects
+              Academic Projects
             </a>
             <a href="#skills" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
               Skills
@@ -36,7 +49,6 @@ const Navbar: React.FC = () => {
               Contact
             </a>
           </div>
-
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button
@@ -64,8 +76,11 @@ const Navbar: React.FC = () => {
           <a href="#about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
             About
           </a>
+          <a href="#experience" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+            Experience
+          </a>
           <a href="#projects" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            Projects
+            Academic Projects
           </a>
           <a href="#skills" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
             Skills

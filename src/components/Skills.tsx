@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   CodeBracketIcon, 
+  PaintBrushIcon,
+  UserGroupIcon,
   CommandLineIcon, 
   DevicePhoneMobileIcon,
   ServerIcon,
@@ -16,31 +18,43 @@ const Skills: React.FC = () => {
       icon: CodeBracketIcon,
       description: 'React, TypeScript, Tailwind CSS, Next.js'
     },
+
+    { 
+      name: 'UI/UX Design', 
+      icon: PaintBrushIcon,  
+      description: 'Figma, Wireframing, Prototyping, Usability Testing'
+    },
+
     { 
       name: 'Backend Development', 
       icon: CommandLineIcon,
-      description: 'Node.js, Express, Python, Django'
+      description: 'Node.js, Django'
     },
     { 
       name: 'Mobile Development', 
       icon: DevicePhoneMobileIcon,
-      description: 'React Native, Swift, Kotlin'
+      description: 'React Native'
     },
-    { 
-      name: 'API Development', 
-      icon: ServerIcon,
-      description: 'RESTful APIs, GraphQL, WebSockets'
-    },
+
     { 
       name: 'Database Management', 
       icon: CircleStackIcon,
-      description: 'MongoDB, PostgreSQL, MySQL, Redis'
+      description: 'MongoDB, MySQL'
     },
     { 
       name: 'Cloud Services', 
       icon: CloudIcon,
-      description: 'AWS, Azure, Google Cloud, Docker'
-    }
+      description: 'Azure, Firebase'
+    },
+
+    { 
+      name: 'Soft Skills', 
+      icon: UserGroupIcon,
+      description: 'Problem Solving, Team Collaboration, Analytical Thinking, Time Management'
+    },
+
+
+    
   ];
 
   return (

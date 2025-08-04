@@ -58,9 +58,16 @@ const Footer: React.FC = () => {
                   About
                 </a>
               </li>
+
+                <li>
+                <a href="#ExperienceTimeline" className="text-gray-400 hover:text-white transition-colors">
+                  Experience
+                </a>
+              </li>
+
               <li>
                 <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
-                  Projects
+                  Academic Projects
                 </a>
               </li>
               <li>

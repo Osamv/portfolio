@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CodeBracketIcon, CommandLineIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline';
+import { CodeBracketIcon, CommandLineIcon, DevicePhoneMobileIcon, PaintBrushIcon,  } from '@heroicons/react/24/outline';
 
 const About: React.FC = () => {
   const skills = [
     { name: 'Frontend Development', icon: CodeBracketIcon },
-    { name: 'Backend Development', icon: CommandLineIcon },
-    { name: 'Mobile Development', icon: DevicePhoneMobileIcon },
+    { name: 'Data Analysis', icon: CommandLineIcon },
+    { name: 'UI/UX Design', icon: PaintBrushIcon },
   ];
 
   return (
@@ -35,14 +35,13 @@ const About: React.FC = () => {
               Who am I?
             </h3>
             <p className="text-gray-600 dark:text-gray-300">
-              I'm a passionate Full Stack Developer with a strong foundation in both frontend and backend technologies.
-              With years of experience in web development, I specialize in creating scalable and efficient solutions
-              that solve real-world problems.
+              I'm a multi-skilled Software Engineer with a strong background in front-end development, data analysis, and UI/UX design.
+              I specialize in building user-centered, data-driven web solutions using technologies like Python, SQL, JavaScript, and Figma.
             </p>
             <p className="text-gray-600 dark:text-gray-300">
-              My journey in tech started with a curiosity about how things work on the internet.
-              Since then, I've worked on numerous projects, from small business websites to complex
-              enterprise applications.
+              My tech journey began with a passion for analyzing systems and improving user experiences. Since then, 
+              I’ve worked on real-time support systems, internal tools, 
+              and smart applications — combining technical depth with design clarity to solve real-world challenges.
             </p>
           </motion.div>
 
