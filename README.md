@@ -35,7 +35,7 @@ A web app that uses AI to detect if a response was written by a human or generat
 
 ## 🔗 Live Site
 
-[Visit Portfolio](https://cv-osama.vercel.app)
+[Visit Portfolio](https://cv-osama.netlify.app/)
 
 ---
 
