@@ -1,6 +1,16 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowDownIcon } from '@heroicons/react/24/outline';
 
-const experiences = [
+// Move experiences data to a separate file for better organization
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+const experiences: Experience[] = [
   {
     title: 'Real Time Analysis - RTA',
     company: 'upsource by solutions',
@@ -19,45 +29,68 @@ const experiences = [
     period: 'May 22 – Jul 22',
     description: 'Completed an internship focused on digital transformation, performance efficiency, and ticket system optimization. Learned ASP.NET basics, developed small applications with C# and SQL Server, and supported digital transformation initiatives aligned with Vision 2030.',
   },
-  // أضف أو عدل المزيد حسب حاجتك
+  // اذا في خبرات اكثر بضيفها هنا
 ];
 
-
-
+// Separate timeline card component for better reusability
+const TimelineCard: React.FC<Experience & { index: number }> = ({ title, company, period, description, index }) => (
+  <motion.div
+    initial={{ opacity: 0, x: -50 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.2 }}
+    viewport={{ once: true }}
+    className="mb-9 ml-8 relative"
+  >
+    <span className="absolute -left-9 top-14 w-1 h-10 bg-blue-800 border-4 border-blue-300 rounded-full shadow" />
+    <div className="bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row md:items-center">
+      <div className="md:w-1/5 mb-2 md:mb-0 flex-shrink-0">
+        <span className="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-[11px] font-semibold mr-4 whitespace-nowrap">
+          {period}
+        </span>
+      </div>
+      <div className="md:w-4/5">
+        <div className="text-lg font-bold text-blue-400">{title}</div>
+        <div className="text-gray-300 text-md mb-2">{company}</div>
+        <div className="text-gray-400 text-sm">{description}</div>
+      </div>
+    </div>
+  </motion.div>
+);
 
 const ExperienceTimeline: React.FC = () => (
-  <section id="experience" className="py-24 bg-gradient-to-t from-gray-200 to-gray-50 dark:from-gray-900 dark:to-gray-800">
-
-
-<div className="text-center mb-16">
-  <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Experience</h2>
-  <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
-</div>
+  <section id="experience" className="py-24 bg-gradient-to-t from-gray-200 to-gray-50 dark:from-gray-900 dark:to-gray-800 relative">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Experience</h2>
+      <div className="w-24 h-1 bg-blue-600 mx-auto" />
+    </motion.div>
 
     <div className="relative border-l-4 border-blue-700 max-w-3xl mx-auto">
       {experiences.map((exp, idx) => (
-        <div key={idx} className="mb-9 ml-8 relative">
-          {/* دائرة النقطة على الخط */}
-          <span className="absolute -left-9 top-14 w-1 h-10 bg-blue-800 border-4 border-blue-300 rounded-full shadow"></span>
-          {/* البطاقة */}
-          <div className="bg-gray-800 rounded-xl shadow p-6 flex flex-col md:flex-row md:items-center">
-            <div className="md:w-1/5 mb-2 md:mb-0 flex-shrink-0">
-              <span className="inline-block bg-blue-700 text-white px-4 py-2 rounded-full text-[11px] font-semibold mr-4  whitespace-nowrap">
-                {exp.period}
-              </span>
-            </div>
-            <div className="md:w-4/5">
-              <div className="text-lg font-bold text-blue-400">{exp.title}</div>
-              <div className="text-gray-300 text-md mb-2">{exp.company}</div>
-              <div className="text-gray-400 text-sm">{exp.description}</div>
-            </div>
-          </div>
-        </div>
+        <TimelineCard key={`${exp.title}-${exp.period}`} {...exp} index={idx} />
       ))}
-      {/* نهاية الخط */}
-      <div className="absolute w-6 h-6 -left-9 bg-blue-700 rounded-full shadow top-full"></div>
+      <div className="absolute w-6 h-6 -left-9 bg-blue-700 rounded-full shadow top-full" />
     </div>
     
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 1 }}
+      className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex justify-center"
+    >
+      <a 
+        href="#projects" 
+        className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 flex items-center justify-center"
+        aria-label="Scroll to projects section"
+      >
+        <ArrowDownIcon className="h-5 w-5 animate-bounce" />
+      </a>
+    </motion.div>
   </section>
 );
 

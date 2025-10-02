@@ -7,7 +7,6 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import ExperienceTimeline from './components/ExperienceTimeline';
 import Footer from './components/Footer';
-import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,23 +27,10 @@ function App() {
     }
   }, [darkMode]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
-      <button
-        onClick={toggleDarkMode}
-        className="fixed top-4 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
-        aria-label="Toggle dark mode"
-      >
-        {darkMode ? (
-          <SunIcon className="h-5 w-5" />
-        ) : (
-          <MoonIcon className="h-5 w-5" />
-        )}
-      </button>
+      
       
       <Navbar />
       <main className="overflow-hidden">

@@ -1,32 +1,76 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   EnvelopeIcon, 
   PhoneIcon, 
-  MapPinIcon 
+  MapPinIcon,
+  CheckCircleIcon,
+  ExclamationCircleIcon
 } from '@heroicons/react/24/outline';
 
+// Define interfaces for better type safety
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
+
+interface ContactInfo {
+  icon: React.ElementType;
+  title: string;
+  content: string;
+  link: string;
+}
+
+interface FormStatus {
+  type: 'success' | 'error' | null;
+  message: string;
+}
+
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStatus, setFormStatus] = useState<FormStatus>({ type: null, message: '' });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call - Replace with your actual form submission logic
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setFormStatus({
+        type: 'success',
+        message: 'Thank you! Your message has been sent successfully.'
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      setFormStatus({
+        type: 'error',
+        message: 'Sorry, something went wrong. Please try again later.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-    });
+    }));
+    // Clear status when user starts typing again
+    if (formStatus.type) {
+      setFormStatus({ type: null, message: '' });
+    }
   };
 
-  const contactInfo = [
+  const contactInfo: ContactInfo[] = [
     {
       icon: EnvelopeIcon,
       title: 'Email',
@@ -47,8 +91,24 @@ const Contact: React.FC = () => {
     }
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <section id="contact" className="py-24 bg-white dark:bg-gray-900">
+    <section id="contact" className="py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
       <div className="container max-w-screen-xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -63,9 +123,9 @@ const Contact: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
             className="space-y-8"
           >
@@ -104,6 +164,7 @@ const Contact: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="relative"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -140,6 +201,7 @@ const Contact: React.FC = () => {
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Message
                 </label>
+
                 <textarea
                   id="message"
                   name="message"
@@ -155,11 +217,46 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
-                className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                disabled={isSubmitting}
+                className={`
+                  w-full px-6 py-3 rounded-lg transition-all duration-200 
+                  ${isSubmitting 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-blue-600 hover:bg-blue-700'
+                  }
+                  text-white font-medium
+                `}
               >
-                Send Message
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center space-x-2">
+                    <div className="w-5 h-5 border-t-2 border-white rounded-full animate-spin" />
+                    <span>Sending...</span>
+                  </div>
+                ) : (
+                  'Send Message'
+                )}
               </motion.button>
             </form>
+
+            {formStatus.type && (
+              <motion.div
+                key="status-message"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className={`
+                  mt-4 p-4 rounded-lg flex items-center space-x-2
+                  ${formStatus.type === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}
+                `}
+              >
+                {formStatus.type === 'success' ? (
+                  <CheckCircleIcon className="w-5 h-5" />
+                ) : (
+                  <ExclamationCircleIcon className="w-5 h-5" />
+                )}
+                <span>{formStatus.message}</span>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
@@ -167,4 +264,4 @@ const Contact: React.FC = () => {
   );
 };
 
-export default Contact; 
+export default Contact;

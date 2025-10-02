@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { 
   CodeBracketIcon,
   LinkIcon,
-  ChatBubbleLeftIcon
+  ChatBubbleLeftIcon,
 } from '@heroicons/react/24/outline';
 
 const Footer: React.FC = () => {
@@ -18,6 +18,14 @@ const Footer: React.FC = () => {
       icon: LinkIcon,
       url: 'https://linkedin.com/in/osama1421',
     },
+
+    {
+      name: 'ChatBubbleLeftIcon',
+      icon: ChatBubbleLeftIcon,
+      url: 'https://linkedin.com/in/osama1421',
+    },
+
+    
   ];
 
   const currentYear = new Date().getFullYear();
@@ -35,7 +43,7 @@ const Footer: React.FC = () => {
           >
             <h3 className="text-xl font-semibold mb-4">Osama Alsahafi</h3>
             <p className="text-gray-400">
-              Developer & Designer and UI/UX Designer
+              Developer & UI/UX Designer
             </p>
           </motion.div>
 
@@ -60,7 +68,7 @@ const Footer: React.FC = () => {
               </li>
 
                 <li>
-                <a href="#ExperienceTimeline" className="text-gray-400 hover:text-white transition-colors">
+                <a href="#experience" className="text-gray-400 hover:text-white transition-colors">
                   Experience
                 </a>
               </li>
@@ -70,11 +78,7 @@ const Footer: React.FC = () => {
                   Academic Projects
                 </a>
               </li>
-              <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
-                  Contact
-                </a>
-              </li>
+              
             </ul>
           </motion.div>
 
@@ -85,8 +89,8 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             className="text-center md:text-right"
           >
-            <h3 className="text-xl font-semibold mb-4">Connect</h3>
-            <div className="flex justify-center md:justify-end space-x-4">
+            <h3 className="text-xl font-semibold mb-4 ">Connect</h3>
+            <div className="flex justify-center md:justify-end space-x-4 ">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}

@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
+const navLinks = [
+  { href: '#home', label: 'Home' },
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#projects', label: 'Academic Projects' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#contact', label: 'Contact' }
+];
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
+  // Modified click handler to prevent menu from closing immediately
+  const handleClick = (e: MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (!target.closest('nav')) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      window.addEventListener('click', handleClick);
+      return () => window.removeEventListener('click', handleClick);
+    }
+  }, [isMenuOpen]);
+
+  const toggleMenu = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent event from bubbling up
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -54,7 +80,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={toggleMenu}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
-              aria-expanded="false"
+              aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
               {isMenuOpen ? (
@@ -67,31 +93,29 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-white dark:bg-gray-900 shadow-lg`}>
+      {/* Mobile Menu */}
+      <motion.div
+        initial={false}
+        animate={isMenuOpen ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
+        transition={{ duration: 0.3 }}
+        className="md:hidden bg-white dark:bg-gray-900 shadow-lg overflow-hidden"
+      >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="#home" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            Home
-          </a>
-          <a href="#about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            About
-          </a>
-          <a href="#experience" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            Experience
-          </a>
-          <a href="#projects" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            Academic Projects
-          </a>
-          <a href="#skills" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            Skills
-          </a>
-          <a href="#contact" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
-            Contact
-          </a>
+          {navLinks.map((link) => (
+            <motion.a
+              key={link.href}
+              href={link.href}
+              whileHover={{ x: 10 }}
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+            >
+              {link.label}
+            </motion.a>
+          ))}
         </div>
-      </div>
+      </motion.div>
     </nav>
   );
 };
 
-export default Navbar; 
+export default Navbar;
