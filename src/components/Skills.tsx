@@ -84,7 +84,7 @@ const Skills: React.FC = () => {
       name: 'Frontend Development',
       icon: CodeBracketIcon,
       description: 'React, TypeScript, Tailwind CSS, Next.js',
-      proficiency: 90,
+      proficiency: 95,
       category: 'technical',
       level: 'Expert'
     },
@@ -92,7 +92,7 @@ const Skills: React.FC = () => {
       name: 'UI/UX Design', 
       icon: PaintBrushIcon,  
       description: 'Figma, Wireframing, Prototyping, Usability Testing',
-      proficiency: 85,
+      proficiency: 99,
       category: 'design',
       level: 'Advanced'
     },
@@ -132,7 +132,7 @@ const Skills: React.FC = () => {
       name: 'Soft Skills', 
       icon: UserGroupIcon,
       description: 'Problem Solving, Team Collaboration, Analytical Thinking, Time Management',
-      proficiency: 90,
+      proficiency: 98,
       category: 'soft',
       level: 'Expert'
     },

@@ -18,7 +18,6 @@ const itemVariants = {
 const Hero: React.FC = () => {
   const [text, setText] = useState('');
   const fullText = "Developer & UI/UX Designer";
-  const controls = useAnimation();
 
   useEffect(() => {
     let currentText = '';
